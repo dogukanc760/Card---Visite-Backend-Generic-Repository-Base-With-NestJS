@@ -8,4 +8,12 @@ export default {
     api_key: 'your_own_api_key',
     api_secret: 'your_own_api_secret',
   },
+  api_results:{
+    success_created:'The record has been successfully created',
+    failed_created:'The record didnt create',
+    success_update:'The record has been successfully updated',
+    failed_update:'The record has been didnt update',
+    success : 'Process has been successfully',
+    failed : 'Process has been failed',
+  }
 };
