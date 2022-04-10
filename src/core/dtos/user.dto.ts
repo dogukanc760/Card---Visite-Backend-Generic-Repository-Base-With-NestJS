@@ -76,4 +76,6 @@ export class CreateUserDto {
 }
 
 
+export class LoginUserDto extends PartialType(CreateUserDto){}
+
 export class UpdateUser extends PartialType(CreateUserDto){}

@@ -6,16 +6,19 @@ import {
   Body,
   Put,
   UseInterceptors,
+  HttpCode,
 } from '@nestjs/common';
 import { MESSAGES } from '@nestjs/core/constants';
 import {
   ApiBadGatewayResponse,
   ApiCreatedResponse,
   ApiForbiddenResponse,
+  ApiOkResponse,
 } from '@nestjs/swagger';
 import environment from 'src/environment/environment';
+import { User } from 'src/frameworks/data-services/mongo/model';
 import { TransformInterceptor } from 'src/libs/api-results/standart-results';
-import { CreateUserDto, UpdateUser } from '../core/dtos';
+import { CreateUserDto, LoginUserDto, UpdateUser } from '../core/dtos';
 import { UserServices } from '../services/uses-cases/user/user-services.service';
 
 @Controller('/user')
@@ -44,6 +47,28 @@ export class UserController {
   @ApiBadGatewayResponse({ description: 'Bad Gateway' })
   createUser(@Body() UserDto: CreateUserDto) {
     return this.UserServices.createUser(UserDto);
+  }
+
+  // @ApiOkResponse({
+  //   description: environment.api_results.success,
+  //   type: LoginUserDto,
+  //   isArray: true,
+  //   status: 200,
+  // })
+  // @ApiForbiddenResponse({ description: 'Forbidden' })
+  // @ApiBadGatewayResponse({ description: 'Bad Gateway' })
+  @Post('auth')
+  async auth(@Body() LoginDto: LoginUserDto) {
+    const user = (await this.UserServices.getAllUsers()).filter(
+      (x) => x.mail == LoginDto.mail,
+    );
+    //const results = await Promise.all(user);
+
+    if (user.length > 0) {
+      return user;
+    }
+
+    return null;
   }
 
   @Put(':id')

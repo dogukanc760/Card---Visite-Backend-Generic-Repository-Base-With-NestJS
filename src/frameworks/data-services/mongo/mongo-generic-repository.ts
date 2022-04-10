@@ -1,3 +1,4 @@
+import { Query } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { IGenericRepository } from '../../../core';
 
@@ -24,6 +25,8 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
   create(item: T): Promise<T> {
     return this._repository.create(item);
   }
+
+  
 
   update(id: string, item: T) {
     return this._repository.findByIdAndUpdate(id, item);
