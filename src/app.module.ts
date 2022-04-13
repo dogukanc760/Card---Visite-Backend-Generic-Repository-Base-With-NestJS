@@ -6,16 +6,18 @@ import environment from './environment/environment';
 
 import { DataServicesModule } from './services/data-services.module';
 import { UserServicesModule } from './services/uses-cases/user/user-services.module';
-import { UserController } from './controllers';
+import { CallListController, UserController } from './controllers';
+import { CallListServicesModule } from './services/uses-cases/callList/callList-services.module';
 
 @Module({
   imports: [
     DataServicesModule,
     UserServicesModule,
+    CallListServicesModule,
     //MongooseModule.forRoot(environment.mongoUrl),
     CacheModule.register(),
   ],
-  controllers: [AppController, UserController],
+  controllers: [AppController, UserController, CallListController],
   providers: [AppService],
 })
 export class AppModule { 
