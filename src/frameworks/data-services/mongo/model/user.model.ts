@@ -4,14 +4,13 @@ export type UserDocument = User & Document;
 
 @Schema()
 export class User {
-  @Prop({ required: true})
+  @Prop({ required: true })
   fullName: string;
 
   @Prop()
-  companyName:string;
+  companyName: string;
 
- 
-  @Prop({required:true})
+  @Prop({ required: true })
   gsm: string;
 
   @Prop()
@@ -20,25 +19,25 @@ export class User {
   @Prop()
   gsm2: string;
 
-  @Prop({required:true})
+  @Prop({ required: true })
   mail: string;
 
-  @Prop({required:true})
+  @Prop({ required: true })
   password: string;
 
-  @Prop({required:true})
+  @Prop({ required: true })
   city: string;
 
-  @Prop({required:true})
+  @Prop({ required: true })
   distinct: string;
 
-  @Prop({default:false})
+  @Prop({ default: false })
   isBan: boolean;
 
-  @Prop({default:''})
+  @Prop({ default: '' })
   banTime: string;
 
-  @Prop({default:true})
+  @Prop({ default: true })
   isActive: boolean;
 }
 
