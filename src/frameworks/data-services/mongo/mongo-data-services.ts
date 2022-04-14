@@ -20,7 +20,7 @@ import {
 export class MongoDataServices implements IDataService, OnApplicationBootstrap {
   users: MongoGenericRepository<User>;
   cards: MongoGenericRepository<Card>;
-  callLists: MongoGenericRepository<CallList>;
+  calls: IGenericRepository<CallList>;
   qrCodes: MongoGenericRepository<QrCode>;
   userSettings: MongoGenericRepository<UserSetting>;
 
@@ -36,14 +36,11 @@ export class MongoDataServices implements IDataService, OnApplicationBootstrap {
     @InjectModel(UserSetting.name)
     private UserSettingRepository: Model<UserSettingDocument>,
   ) {}
-  calls: IGenericRepository<CallList>;
 
   onApplicationBootstrap() {
     this.users = new MongoGenericRepository<User>(this.UserRepository);
     this.cards = new MongoGenericRepository<Card>(this.CardRepository);
-    this.callLists = new MongoGenericRepository<CallList>(
-      this.CallListRepository,
-    );
+    this.calls = new MongoGenericRepository<CallList>(this.CallListRepository);
     this.qrCodes = new MongoGenericRepository<QrCode>(this.QrCodeRepository);
     this.userSettings = new MongoGenericRepository<UserSetting>(
       this.UserSettingRepository,

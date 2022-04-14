@@ -14,6 +14,7 @@ import {
   ApiCreatedResponse,
   ApiForbiddenResponse,
   ApiOkResponse,
+  ApiTags,
 } from '@nestjs/swagger';
 import { CreateCallListDto, UpdateCallListDto } from 'src/core/dtos';
 import environment from 'src/environment/environment';
@@ -22,6 +23,7 @@ import { TransformInterceptor } from 'src/libs/api-results/standart-results';
 import { CallListServices } from 'src/services';
 
 @Controller('/call-list')
+@ApiTags('Call Lists Endpoints')
 @UseInterceptors(TransformInterceptor)
 export class CallListController {
   constructor(private CallListServices: CallListServices) {}
@@ -45,12 +47,16 @@ export class CallListController {
   })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBadGatewayResponse({ description: 'Bad Gateway' })
-  createUser(@Body() CallListDto: CreateCallListDto) {
-    return this.CallListServices.createCall(CallListDto);
+  createCall(@Body() CallListDto: CreateCallListDto) {
+    try {
+      return this.CallListServices.createCall(CallListDto);
+    } catch (error) {
+      return error;
+    }
   }
 
   @Put(':id')
-  updateUser(
+  updateCall(
     @Param('id') callId: string,
     @Body() updateCallListDto: UpdateCallListDto,
   ) {
@@ -58,7 +64,7 @@ export class CallListController {
   }
 
   @Get('/get-by-user/:id')
-  getByUser(@Param('id') id:any){
-      return this.CallListServices.getCallListByUser(id);
+  getByUser(@Param('id') id: any) {
+    return this.CallListServices.getCallListByUser(id);
   }
 }

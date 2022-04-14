@@ -8,12 +8,18 @@ import { DataServicesModule } from './services/data-services.module';
 import { UserServicesModule } from './services/uses-cases/user/user-services.module';
 import { CallListController, UserController } from './controllers';
 import { CallListServicesModule } from './services/uses-cases/callList/callList-services.module';
+import { CardServicesModule } from './services/uses-cases/card/card-services.module';
+import { QrCodesServicesModule } from './services/uses-cases/qrCode/qrCode-services.module';
+import { UserSettingServicesModule } from './services/uses-cases/usersetting/usersetting-services.module';
 
 @Module({
   imports: [
     DataServicesModule,
     UserServicesModule,
     CallListServicesModule,
+    CardServicesModule,
+    QrCodesServicesModule,
+    UserSettingServicesModule,
     //MongooseModule.forRoot(environment.mongoUrl),
     CacheModule.register(),
   ],

@@ -27,9 +27,14 @@ export class CallListServices {
   }
 
   createCall(createCallListDto: CreateCallListDto): Promise<CallList> {
-    const calls =
-      this.callListFactoryService.createNewCallList(createCallListDto);
-    return this.dataServices.calls.create(calls);
+    try {
+      const calls =
+        this.callListFactoryService.createNewCallList(createCallListDto);
+      return this.dataServices.calls.create(calls);
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   }
 
   updateCall(

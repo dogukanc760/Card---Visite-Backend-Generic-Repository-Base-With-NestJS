@@ -14,6 +14,7 @@ import {
   ApiCreatedResponse,
   ApiForbiddenResponse,
   ApiOkResponse,
+  ApiTags,
 } from '@nestjs/swagger';
 import environment from 'src/environment/environment';
 import { User } from 'src/frameworks/data-services/mongo/model';
@@ -22,6 +23,7 @@ import { CreateUserDto, LoginUserDto, UpdateUser } from '../core/dtos';
 import { UserServices } from '../services/uses-cases/user/user-services.service';
 
 @Controller('/user')
+@ApiTags('User Endpoints')
 @UseInterceptors(TransformInterceptor)
 export class UserController {
   constructor(private UserServices: UserServices) {}
