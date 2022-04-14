@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { DataServicesModule } from '../../data-services.module';
-import { UserSettingFactoryService } from './UserSetting-factory.service';
-import { UserSettingServices } from './UserSetting-services.service';
+import { UserSettingFactoryService } from './usersetting-factory.service';
+import { UserSettingServices } from './usersetting-services.service';
 
 
 @Module({
